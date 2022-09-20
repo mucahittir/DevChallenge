@@ -97,12 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf07a1ce0a28b1b47b1d4613bc582fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
-  state: 0
-  x: 0
-  y: 0
-  isChecked: 0
   xSymbol: {fileID: 4854784557803248211}
+  tileSprite: {fileID: 8423317415007028301}
 --- !u!61 &6950409982769097712
 BoxCollider2D:
   m_ObjectHideFlags: 0

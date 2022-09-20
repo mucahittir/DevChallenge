@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         int.TryParse(inputField.text, out dimension);
         gridManager.SetMatchCount = OnMatch;
         gridManager.Initialize(dimension);
-        setMatchCountText(0);
+        setMatchCountText(dimension);
 
     }
 
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         int dimension = 0;
         int.TryParse(inputField.text, out dimension);
         gridManager.Rebuild(dimension);
-        setMatchCountText(0);
+        setMatchCountText(dimension);
     }
 
     public void OnMatch(int matchCount)
