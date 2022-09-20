@@ -24,7 +24,7 @@ public class GridManager : MonoBehaviour
     {
         width = dimension;
         height = dimension;
-
+        int i = 1;
         for (int x = 0; x < width; x++)
         {
             gridList.Add(new List<Tile>());
@@ -38,6 +38,10 @@ public class GridManager : MonoBehaviour
                 tile.y = y;
                 tile.transform.localScale = new Vector3(scale,scale,scale);
                 tile.transform.position = new Vector2(startX + (tile.x * scale), startY + (tile.y * -scale));
+                tile.SetChecked(false);
+                tile.gameObject.name = "Tile" + i;
+                i++;
+                tile.transform.SetParent(transform);
                 gridList[x].Add(tile);
                 Debug.Log(tile.x + " " + tile.y);
             }
