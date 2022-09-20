@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -12,16 +13,18 @@ public class GridManager : MonoBehaviour
     private float scale, startX, startY;
     private Vector2 left, right;
     private List<List<Tile>> gridList;
+    [SerializeField] InputField dimensionInput;
 
-    public void Initialize()
+    public void Initialize(int dimension)
     {
         gridList = new List<List<Tile>>();
-        calculatePlacementsAndScale();
+        this.dimension = dimension;
         CreateGrid(dimension);
     }
 
     public void CreateGrid(int dimension)
     {
+        calculatePlacementsAndScale();
         width = dimension;
         height = dimension;
         int i = 1;
@@ -47,6 +50,21 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public void Rebuild(int dimension)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Destroy(gridList[x][y].gameObject);
+            }
+        }
+        gridList.Clear();
+        this.dimension = dimension;
+        CreateGrid(dimension);
+    }
+
     
     private void calculatePlacementsAndScale()
     {
