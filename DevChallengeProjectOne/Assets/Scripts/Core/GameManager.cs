@@ -7,11 +7,15 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GridManager gridManager;
     [SerializeField] InputField inputField;
+    [SerializeField] Text matchCountText;
     void Start()
     {
         int dimension = 0;
         int.TryParse(inputField.text, out dimension);
+        gridManager.SetMatchCount = OnMatch;
         gridManager.Initialize(dimension);
+        setMatchCountText(0);
+
     }
 
     public void Rebuild()
@@ -19,6 +23,18 @@ public class GameManager : MonoBehaviour
         int dimension = 0;
         int.TryParse(inputField.text, out dimension);
         gridManager.Rebuild(dimension);
+        setMatchCountText(0);
     }
+
+    public void OnMatch(int matchCount)
+    {
+        setMatchCountText(matchCount);
+    }
+
+    private void setMatchCountText(int match)
+    {
+        matchCountText.text = "Match Count: " + match;
+    }
+
 
 }
