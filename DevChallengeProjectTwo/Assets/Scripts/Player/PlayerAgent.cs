@@ -14,8 +14,6 @@ public class PlayerAgent : MonoBehaviour
     public void StartGame()
     {
         setAnimation(PlayerState.Run);
-        for(int i= 0; i < 10; i++)
-            PoolManager.Instance.SetActiveItemWithPosition("cube", transform.position);
     }
 
     public void Reload()

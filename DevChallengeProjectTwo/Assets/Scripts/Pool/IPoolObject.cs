@@ -8,4 +8,7 @@ public interface IPoolObject
     public abstract void SetActive();
 
     public abstract void Dismiss();
+
+    public abstract void SetActiveWithPosition(Vector3 position);
+    public abstract void SetActiveWithTransform(Vector3 position, Quaternion rotation, Vector3 scale);
 }

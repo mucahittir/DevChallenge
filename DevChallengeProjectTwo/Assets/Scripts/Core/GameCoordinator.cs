@@ -5,26 +5,29 @@ using UnityEngine;
 public class GameCoordinator : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
+    [SerializeField] LevelController levelController;
     public void Initialize()
     {
-        playerController.IsActive = false;
+        levelController.Initialize();
         playerController.Initialize();
+        playerController.IsActive = false;
     }
     public void StartGame()
     {
-        playerController.IsActive = true;
         playerController.StartGame();
+        playerController.IsActive = true;
     }
     public void Reload()
     {
-        playerController.IsActive = false;
+        levelController.Reload();
         playerController.Reload();
+        playerController.IsActive = false;
     }
 
     public void GameOver()
     {
-        playerController.IsActive = false;
         playerController.GameOver();
+        playerController.IsActive = false;
     }
 
 }
