@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class PlayerAgent : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     [SerializeField] float speed;
     public void Initialize()
     {
-        Debug.Log("Player Initialized");
+        setDefaults();
+        
     }
     public void StartGame()
     {
-        Debug.Log("Player Started");
+        setAnimation(PlayerState.Run);
+        for(int i= 0; i < 10; i++)
+            PoolManager.Instance.SetActiveItemWithPosition("cube", transform.position);
     }
 
     public void Reload()
@@ -21,15 +25,30 @@ public class PlayerAgent : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game over");
+        setAnimation(PlayerState.Dance);
     }
     public void Movement()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+        transform.localRotation = Quaternion.Euler(0,0,0);
     }
     private void setDefaults()
     {
+        setAnimation(PlayerState.Idle);
         transform.position = new Vector3(0, 0, 0);
     }
 
+    private void setAnimation(PlayerState state)
+    {
+        animator.SetInteger("State", (int)state);
+
+    }
+
+}
+
+public enum PlayerState
+{
+    Idle,
+    Run,
+    Dance
 }
