@@ -33,6 +33,7 @@ public class GameManager : CoreObj<GameManager>
 
     public void GameSuccess()
     {
+        setGameSuccessState();
         playerProgress();
         gameCoordinator.GameSuccess();
     }
@@ -59,6 +60,12 @@ public class GameManager : CoreObj<GameManager>
     {
         gameState = GameState.GameOver;
         ViewManager.Instance.OpenUIClean("FailScreen");
+    }
+    private void setGameSuccessState()
+    {
+
+        gameState = GameState.GameOver;
+        ViewManager.Instance.OpenUIClean("SuccessScreen");
     }
 }
 public enum GameState : int

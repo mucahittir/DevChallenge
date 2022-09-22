@@ -5,9 +5,11 @@ using UnityEngine;
 public class StackController : MonoBehaviour
 {
     [SerializeField] bool IsActive;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] float stackOffset, tolerationOffset;
     List<GameStack> stacks;
     GameStack currentStack, movingStack;
+    int perfectCount;
     public void Initialize()
     {
         IsActive = false;
@@ -15,6 +17,7 @@ public class StackController : MonoBehaviour
         currentStack = LevelController.currentLevel.startingPlatform;
         currentStack.IsLast = true;
         movingStack = null;
+        perfectCount = 0;
     }
 
     public void StartGame()
@@ -27,6 +30,7 @@ public class StackController : MonoBehaviour
     {
         for(int i = 0; i < stacks.Count; i++)
         {
+            stacks[i].OnPerfect -= onPerfect;
             stacks[i].Dismiss();
         }
         stacks.Clear();
@@ -34,6 +38,7 @@ public class StackController : MonoBehaviour
         currentStack = LevelController.currentLevel.startingPlatform;
         currentStack.IsLast = true;
         movingStack = null;
+        perfectCount = 0;
     }
 
     public void GameOver()
@@ -78,6 +83,7 @@ public class StackController : MonoBehaviour
         if(stacks.Count < LevelController.currentLevel.LevelLength)
         {
             movingStack = PoolManager.Instance.GetItem("Stack") as GameStack;
+            movingStack.OnPerfect += onPerfect;
             float stackPosition = (stacks.Count + 1) * stackOffset;
             movingStack.transform.localScale = currentStack.transform.localScale;
             movingStack.SetActiveWithPosition(new Vector3(0, -0.5f, stackPosition));
@@ -87,6 +93,20 @@ public class StackController : MonoBehaviour
         {
             movingStack = null;
             currentStack.IsEnd = true;
+        }
+    }
+
+    private void onPerfect(bool isPerfect)
+    {
+        if(isPerfect)
+        {
+            perfectCount++;
+            audioSource.pitch = 1 + ((perfectCount - 1) * 0.1f);
+            audioSource.Play();
+        }
+        else
+        {
+            perfectCount = 0;
         }
     }
 

@@ -7,8 +7,7 @@ public class GameStack : PoolObject
 {
     private bool dirRight,isLast, isEnd;
     [SerializeField] private float speed;
-    [SerializeField] AudioSource audioSource;
-
+    public event Action<bool> OnPerfect;
     public bool IsLast { get => isLast; set => isLast = value; }
     public bool IsEnd { get => isEnd; set => isEnd = value; }
 
@@ -46,7 +45,11 @@ public class GameStack : PoolObject
         if (Mathf.Abs(hangover) < tolerationOffset)
         {
             hangover = 0;
-            audioSource.Play();
+            OnPerfect(true);
+        }
+        else
+        {
+            OnPerfect(false);
         }
 
         float newXSize = beforeStack.transform.localScale.x - Mathf.Abs(hangover);
@@ -77,4 +80,6 @@ public class GameStack : PoolObject
         FallingCube fallingCube = PoolManager.Instance.GetItem("FallingCube") as FallingCube;
         fallingCube.SetActiveWithTransform(position,Quaternion.identity, scale);
     }
+
+
 }
