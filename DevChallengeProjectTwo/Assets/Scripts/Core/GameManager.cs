@@ -14,6 +14,7 @@ public class GameManager : CoreObj<GameManager>
 
     public void StartGame()
     {
+        Debug.Log(LevelController.currentLevel);
         setInGameState();
         gameCoordinator.StartGame();
     }

@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] int levelLength;
+    [SerializeField] Transform stackExample;
     List<PoolObject> levelObjects;
+
+    public GameStack startingPlatform;
+
+    public int LevelLength { get => levelLength; set => levelLength = value; }
+
     public void LoadLevel()
     {
         levelObjects = new List<PoolObject>();
         setStartingBoard();
-        buildRoad();
         setFinisher();
         Debug.Log("Level loaded");
     }
@@ -27,18 +33,17 @@ public class Level : MonoBehaviour
     private void setStartingBoard()
     {
 
-        PoolObject startingPlatform = PoolManager.Instance.GetItem("StartingPlatform");
-        startingPlatform.SetActiveWithPosition(new Vector3(0, 0, 0));
+        GameStack startingPlatform = PoolManager.Instance.GetItem("StartingPlatform") as GameStack;
+        startingPlatform.SetActiveWithPosition(new Vector3(0, -0.5f, 0));
+        this.startingPlatform = startingPlatform;
         levelObjects.Add(startingPlatform);
     }
-    private void buildRoad()
-    {
 
-    }
     private void setFinisher()
     {
         PoolObject finisher = PoolManager.Instance.GetItem("Finisher");
-        finisher.SetActiveWithPosition(new Vector3(0,0,50));
+        float roadEnd = (levelLength * stackExample.localScale.z) - (stackExample.localScale.z / 2f) + (finisher.transform.localScale.z / 2f);
+        finisher.SetActiveWithPosition(new Vector3(0,0,roadEnd));
         levelObjects.Add(finisher); 
     }
 }
