@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Level
+public class Level : MonoBehaviour
 {
     List<PoolObject> levelObjects;
     public void LoadLevel()
@@ -28,6 +27,9 @@ public class Level
     private void setStartingBoard()
     {
 
+        PoolObject startingPlatform = PoolManager.Instance.GetItem("StartingPlatform");
+        startingPlatform.SetActiveWithPosition(new Vector3(0, 0, 0));
+        levelObjects.Add(startingPlatform);
     }
     private void buildRoad()
     {
@@ -37,6 +39,6 @@ public class Level
     {
         PoolObject finisher = PoolManager.Instance.GetItem("Finisher");
         finisher.SetActiveWithPosition(new Vector3(0,0,50));
-        levelObjects.Add(finisher);
+        levelObjects.Add(finisher); 
     }
 }

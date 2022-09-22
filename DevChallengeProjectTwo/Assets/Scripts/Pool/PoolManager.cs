@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PoolManager : CoreObj<PoolManager>
 {
-    [SerializeField] List<PoolDynamic> poolDynamics;
+    List<PoolDynamic> poolDynamics;
 
     public override void Initialize()
     {
-        for(int i = 0; i < poolDynamics.Count; i++)
+        poolDynamics = new List<PoolDynamic>();
+
+        foreach(Transform child in transform)
         {
-            poolDynamics[i].Initialize();
+            PoolDynamic childPD = child.GetComponent<PoolDynamic>();
+            poolDynamics.Add(childPD);
+            childPD.Initialize();
         }
     }
 

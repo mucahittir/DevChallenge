@@ -26,8 +26,15 @@ public class GameManager : CoreObj<GameManager>
 
     public void GameOver()
     {
+        playerProgress();
         setGameOverState();
         gameCoordinator.GameOver();
+    }
+
+    private void playerProgress()
+    {
+        DataManager.Instance.Level++;
+        DataManager.Instance.Save();
     }
 
     private void setIdleState()
