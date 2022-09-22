@@ -13,6 +13,7 @@ public class StackController : MonoBehaviour
         IsActive = false;
         stacks = new List<GameStack>();
         currentStack = LevelController.currentLevel.startingPlatform;
+        currentStack.IsLast = true;
         movingStack = null;
     }
 
@@ -31,6 +32,7 @@ public class StackController : MonoBehaviour
         stacks.Clear();
 
         currentStack = LevelController.currentLevel.startingPlatform;
+        currentStack.IsLast = true;
         movingStack = null;
     }
 
@@ -65,7 +67,9 @@ public class StackController : MonoBehaviour
         }
         else
         {
+            currentStack.IsLast = false;
             currentStack = movingStack;
+            currentStack.IsLast = true;
             return true;
         }
     }
@@ -82,6 +86,7 @@ public class StackController : MonoBehaviour
         else
         {
             movingStack = null;
+            currentStack.IsEnd = true;
         }
     }
 

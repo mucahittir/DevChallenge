@@ -27,9 +27,14 @@ public class GameManager : CoreObj<GameManager>
 
     public void GameOver()
     {
-        playerProgress();
         setGameOverState();
         gameCoordinator.GameOver();
+    }
+
+    public void GameSuccess()
+    {
+        playerProgress();
+        gameCoordinator.GameSuccess();
     }
 
     private void playerProgress()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,10 @@ public class PlayerController : MonoBehaviour
     {
         player.GameOver();
     }
+    public void GameSuccess()
+    {
+        player.GameSuccess();
+    }
 
     private void Update()
     {
@@ -33,4 +38,5 @@ public class PlayerController : MonoBehaviour
             player.Movement();
         }
     }
+
 }

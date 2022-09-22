@@ -42,7 +42,7 @@ public class Level : MonoBehaviour
     private void setFinisher()
     {
         PoolObject finisher = PoolManager.Instance.GetItem("Finisher");
-        float roadEnd = (levelLength * stackExample.localScale.z) - (stackExample.localScale.z / 2f) + (finisher.transform.localScale.z / 2f);
+        float roadEnd = (levelLength * stackExample.localScale.z) + (stackExample.localScale.z / 2f);
         finisher.SetActiveWithPosition(new Vector3(0,0,roadEnd));
         levelObjects.Add(finisher); 
     }

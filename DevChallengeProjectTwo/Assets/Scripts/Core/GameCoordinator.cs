@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,14 @@ public class GameCoordinator : MonoBehaviour
         levelController.Reload();
         playerController.Reload();
         stackController.Reload();
+        playerController.IsActive = false;
+    }
+
+    public void GameSuccess()
+    {
+
+        playerController.GameSuccess();
+        stackController.GameOver();
         playerController.IsActive = false;
     }
 

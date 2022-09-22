@@ -20,8 +20,7 @@ public class PoolObject : MonoBehaviour, IPoolObject
     public void SetActiveWithPosition(Vector3 position)
     {
         transform.position = position;
-        gameObject.SetActive(true);
-        IsActive = true;
+        SetActive();
     }
 
     public void SetActiveWithTransform(Vector3 position,Quaternion rotation, Vector3 scale)
@@ -30,7 +29,6 @@ public class PoolObject : MonoBehaviour, IPoolObject
         transform.position = position;
         transform.rotation = rotation;
         transform.localScale = scale;
-        gameObject.SetActive(true);
-        IsActive = true;
+        SetActive();
     }
 }

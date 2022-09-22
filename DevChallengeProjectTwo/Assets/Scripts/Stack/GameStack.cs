@@ -5,9 +5,20 @@ using UnityEngine;
 
 public class GameStack : PoolObject
 {
-    private bool dirRight = true;
+    private bool dirRight,isLast, isEnd;
     [SerializeField] private float speed;
     [SerializeField] AudioSource audioSource;
+
+    public bool IsLast { get => isLast; set => isLast = value; }
+    public bool IsEnd { get => isEnd; set => isEnd = value; }
+
+    public override void SetActive()
+    {
+        dirRight = UnityEngine.Random.Range(0, 2) == 1;
+        isLast = false;
+        IsEnd = false;
+        base.SetActive();
+    }
     public void Move()
     {
         if (dirRight)
@@ -48,7 +59,6 @@ public class GameStack : PoolObject
         
         float fallingStackSize = transform.localScale.x - newXSize;
         float cubeEdge = transform.position.x + (newXSize/2f * isRight);
-        float fallingXPosition = cubeEdge + (fallingStackSize / 2f * isRight);
 
 
         transform.localScale = new Vector3(newXSize, transform.localScale.y, transform.localScale.z);
@@ -64,7 +74,7 @@ public class GameStack : PoolObject
         Vector3 scale = new Vector3(xSize, transform.localScale.y, transform.localScale.z);
         Vector3 position = new Vector3(xPos, transform.position.y, transform.position.z);
 
-        PoolObject fallingCube = PoolManager.Instance.GetItem("FallingCube");
+        FallingCube fallingCube = PoolManager.Instance.GetItem("FallingCube") as FallingCube;
         fallingCube.SetActiveWithTransform(position,Quaternion.identity, scale);
     }
 }
