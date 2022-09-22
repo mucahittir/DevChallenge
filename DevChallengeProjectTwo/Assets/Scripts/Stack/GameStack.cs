@@ -7,9 +7,11 @@ public class GameStack : PoolObject
 {
     private bool dirRight,isLast, isEnd;
     [SerializeField] private float speed;
+    [SerializeField] private MeshRenderer meshRenderer;
     public event Action<bool> OnPerfect;
     public bool IsLast { get => isLast; set => isLast = value; }
     public bool IsEnd { get => isEnd; set => isEnd = value; }
+    public MeshRenderer MeshRenderer { get => meshRenderer; set => meshRenderer = value; }
 
     public override void SetActive()
     {
@@ -78,6 +80,7 @@ public class GameStack : PoolObject
         Vector3 position = new Vector3(xPos, transform.position.y, transform.position.z);
 
         FallingCube fallingCube = PoolManager.Instance.GetItem("FallingCube") as FallingCube;
+        fallingCube.Mr.material.color = meshRenderer.material.color;
         fallingCube.SetActiveWithTransform(position,Quaternion.identity, scale);
     }
 

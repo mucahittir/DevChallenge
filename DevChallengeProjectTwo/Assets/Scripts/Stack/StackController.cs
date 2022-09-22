@@ -7,6 +7,7 @@ public class StackController : MonoBehaviour
     [SerializeField] bool IsActive;
     [SerializeField] AudioSource audioSource;
     [SerializeField] float stackOffset, tolerationOffset;
+    [SerializeField] List<Color> colorList;
     List<GameStack> stacks;
     GameStack currentStack, movingStack;
     int perfectCount;
@@ -87,6 +88,8 @@ public class StackController : MonoBehaviour
             float stackPosition = (stacks.Count + 1) * stackOffset;
             movingStack.transform.localScale = currentStack.transform.localScale;
             movingStack.SetActiveWithPosition(new Vector3(0, -0.5f, stackPosition));
+            Color stackColor = colorList[Random.Range(0, colorList.Count)];
+            movingStack.MeshRenderer.material.color = stackColor;
             stacks.Add(movingStack);
         }
         else
