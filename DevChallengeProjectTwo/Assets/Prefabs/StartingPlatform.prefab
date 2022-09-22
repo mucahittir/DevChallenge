@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  audioSource: {fileID: 0}
+  meshRenderer: {fileID: 0}
 --- !u!33 &4466851482438027358
 MeshFilter:
   m_ObjectHideFlags: 0
