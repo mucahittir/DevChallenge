@@ -752,6 +752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2055282972}
+  model: {fileID: 2055282971}
   speed: 2
 --- !u!4 &401445892
 Transform:

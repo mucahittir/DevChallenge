@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2892358616646223589}
   - component: {fileID: 503067614836100791}
   m_Layer: 0
-  m_Name: Level1
+  m_Name: Level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a09e2d5de96874da8f84310d164c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLength: 5
+  levelLength: 7
   stackExample: {fileID: 6013232493299076606, guid: d380ac91a5f7f7c40bd5ee9f85411f79, type: 3}
   startingPlatform: {fileID: 0}

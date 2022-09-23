@@ -7,6 +7,7 @@ using System;
 public class PlayerAgent : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] Transform model; 
     [SerializeField] float speed;
     public void Initialize()
     {
@@ -50,7 +51,19 @@ public class PlayerAgent : MonoBehaviour
 
     private void moveToCenter(Vector3 position)
     {
-        transform.DOMoveX(position.x, 0.2f);
+        float direction = 0f;
+        if (transform.position.x - position.x < 0)
+        {
+            direction = 1f;
+        }
+        else if(transform.position.x - position.x > 0)
+        {
+            direction = -1f;
+        }
+        float turningAngle = 30 * direction;
+        transform.DOMoveX(position.x, 0.2f)
+            .OnStart(() => model.DORotateQuaternion(Quaternion.Euler(0, turningAngle, 0), 0.05f))
+            .OnComplete(() => model.DORotateQuaternion(Quaternion.Euler(0, 0, 0), 0.05f));
     }
 
     private void OnTriggerEnter(Collider other)
