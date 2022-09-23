@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   levels:
-  - levelLength: 5
-    stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
-    startingPlatform: {fileID: 0}
-  - levelLength: 7
-    stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
-    startingPlatform: {fileID: 0}
   - levelLength: 10
+    stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
+    startingPlatform: {fileID: 0}
+  - levelLength: 12
+    stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
+    startingPlatform: {fileID: 0}
+  - levelLength: 15
+    stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
+    startingPlatform: {fileID: 0}
+  - levelLength: 17
+    stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
+    startingPlatform: {fileID: 0}
+  - levelLength: 20
     stackExample: {fileID: 6777036716242130777, guid: ac9b5f71a9e2fdc47acb829de50c9f5e, type: 3}
     startingPlatform: {fileID: 0}
