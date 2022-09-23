@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,9 @@ public class StackController : MonoBehaviour
     List<GameStack> stacks;
     GameStack currentStack, movingStack;
     int perfectCount;
+
+    public Action OnLastPlace;
+    public Action OnFirstPlace;
     public void Initialize()
     {
         IsActive = false;
@@ -66,6 +70,7 @@ public class StackController : MonoBehaviour
     private bool placeLastStack()
     {
         bool isSucceed = movingStack.SplitThis(currentStack, tolerationOffset);
+        OnFirstPlace();
         if(!isSucceed)
         {
             GameManager.Instance.GameOver();
@@ -88,7 +93,7 @@ public class StackController : MonoBehaviour
             float stackPosition = (stacks.Count + 1) * stackOffset;
             movingStack.transform.localScale = currentStack.transform.localScale;
             movingStack.SetActiveWithPosition(new Vector3(0, -0.5f, stackPosition));
-            Color stackColor = colorList[Random.Range(0, colorList.Count)];
+            Color stackColor = colorList[UnityEngine.Random.Range(0, colorList.Count)];
             movingStack.MeshRenderer.material.color = stackColor;
             stacks.Add(movingStack);
         }
@@ -96,6 +101,7 @@ public class StackController : MonoBehaviour
         {
             movingStack = null;
             currentStack.IsEnd = true;
+            OnLastPlace();
         }
     }
 

@@ -6,13 +6,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool isActive;
+    [SerializeField] bool canRun;
     [SerializeField] PlayerAgent player;
+    [SerializeField] float defaultSpeed, maxSpeed;
 
     public bool IsActive { get => isActive; set => isActive = value; }
+    public bool CanRun { get => canRun; set => canRun = value; }
 
     public void Initialize()
     {
         player.Initialize();
+        player.SetSpeed(defaultSpeed);
+        canRun = false;
     }
     public void StartGame()
     {
@@ -21,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public void Reload()
     {
         player.Reload();
+        player.SetSpeed(defaultSpeed);
+        canRun = false;
     }
     public void GameOver()
     {
@@ -31,9 +38,19 @@ public class PlayerController : MonoBehaviour
         player.GameSuccess();
     }
 
+    public void OnLastPlace()
+    {
+        player.SetSpeed(maxSpeed);
+    }
+    public void OnFirstPlace()
+    {
+        canRun = true;
+        player.SetAnimation(PlayerState.Run);
+    }
+
     private void Update()
     {
-        if(IsActive)
+        if(IsActive && CanRun)
         {
             player.Movement();
         }

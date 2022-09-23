@@ -7,8 +7,11 @@ using System;
 public class PlayerAgent : MonoBehaviour
 {
     [SerializeField] Animator animator;
-    [SerializeField] Transform model; 
-    [SerializeField] float speed;
+    [SerializeField] Transform model;
+    float speed;
+
+
+
     public void Initialize()
     {
         setDefaults();
@@ -16,7 +19,7 @@ public class PlayerAgent : MonoBehaviour
     }
     public void StartGame()
     {
-        setAnimation(PlayerState.Run);
+
     }
 
     public void Reload()
@@ -26,28 +29,34 @@ public class PlayerAgent : MonoBehaviour
 
     public void GameOver()
     {
-        setAnimation(PlayerState.Idle);
+        SetAnimation(PlayerState.Idle);
     }
     public void GameSuccess()
     {
-        setAnimation(PlayerState.Dance);
+        SetAnimation(PlayerState.Dance);
     }
     public void Movement()
     {
+
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
-
-    private void setDefaults()
+    public void SetSpeed(float speed)
     {
-        setAnimation(PlayerState.Idle);
-        transform.position = new Vector3(0, 0, 0);
+        this.speed = speed;
     }
 
-    private void setAnimation(PlayerState state)
+    public void SetAnimation(PlayerState state)
     {
         animator.SetInteger("State", (int)state);
     }
+
+    private void setDefaults()
+    {
+        SetAnimation(PlayerState.Idle);
+        transform.position = new Vector3(0, 0, 0);
+    }
+
 
     private void moveToCenter(Vector3 position)
     {

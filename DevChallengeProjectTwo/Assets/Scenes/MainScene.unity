@@ -753,7 +753,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2055282972}
   model: {fileID: 2055282971}
-  speed: 2
 --- !u!4 &401445892
 Transform:
   m_ObjectHideFlags: 0
@@ -961,7 +960,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  canRun: 0
   player: {fileID: 401445891}
+  defaultSpeed: 3
+  maxSpeed: 10
 --- !u!4 &509863499
 Transform:
   m_ObjectHideFlags: 0

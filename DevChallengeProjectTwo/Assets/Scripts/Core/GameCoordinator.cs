@@ -15,6 +15,9 @@ public class GameCoordinator : MonoBehaviour
         playerController.Initialize();
         stackController.Initialize();
         cameraController.Initialize();
+
+        stackController.OnLastPlace = playerController.OnLastPlace;
+        stackController.OnFirstPlace = playerController.OnFirstPlace;
         playerController.IsActive = false;
     }
     public void StartGame()
